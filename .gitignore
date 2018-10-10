@@ -1,0 +1,8 @@
+UniversalAuth/obj/
+UniversalAuth/bin/
+UniversalAuth/Web.Debug.config
+UniversalAuth/Web.Release.config
+UniversalAuth/Properties/PublishProfiles/
+UniversalAuth.*.suo
+UniversalAuth/UniversalAuth.csproj.user
+.vs/*

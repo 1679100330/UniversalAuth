@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Role";
+}
+<div class="layui-row">
+    <div class="layui-col-md6" style="padding:10px">
+        <div class="layui-card" style="margin-top:20px;">
+            <div class="layui-card-header" style="background:#3598DC;color:white">角色列表</div>
+            <div class="layui-card-body" style="border-left:1px solid #E6E6E6;border-bottom:1px solid #E6E6E6;border-right:1px solid #E6E6E6;padding:0px;">
+                <table class="layui-table" id="tb_role" lay-skin="nob" style="margin:0px;">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>名称</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md6" style="padding:10px">
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">編輯</li>
+                <li>权限</li>
+                <li>用户</li>
+                <li>群组</li>
+            </ul>
+            <div class="layui-tab-content" style="border-left:1px solid #E6E6E6;border-bottom:1px solid #E6E6E6;border-right:1px solid #E6E6E6;">
+                <div class="layui-tab-item layui-show">
+                    <form class="layui-form" action="" lay-filter="formRole" id="formRole">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">ID</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="id" class="layui-input" disabled>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" lay-verify="required" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit="" lay-filter="saveRole">保存</button>
+                                <button class="layui-btn" lay-submit="" lay-filter="deleteRole">删除</button>
+                                <button id="reset" type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-tab-item">
+                    <form class="layui-form" action="" lay-filter="example">
+                        <div id="gw-tree"></div>
+                        <div class="layui-form-item" style="margin-top:10px;">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit="" lay-filter="savePremToRole">保存</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-tab-item">
+                    <table class="layui-table" id="tb_user" lay-skin="nob" style="margin:0px;">
+                        <thead>
+                            <tr>
+                                <th>用戶名</th>
+                                <th>姓名</th>
+                                <th>移除</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="layui-tab-item">
+                    <table class="layui-table" id="tb_group" lay-skin="nob" style="margin:0px;">
+                        <thead>
+                            <tr>
+                                <th>名称</th>
+                                <th>移除</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Res/Js/System/Role.js?t=20181008Ab"></script>
+

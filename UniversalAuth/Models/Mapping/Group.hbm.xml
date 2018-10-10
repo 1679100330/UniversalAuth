@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+namespace="UniversalAuth.Models" assembly="UniversalAuth">
+  <class name="Group" table="SYS_Group">
+    <id name="Id"/>
+    <version name="Version" column="Version" type="integer" unsaved-value="0" />
+    <property name="Name" />
+    <property name="CreateDate" column="CREATE_DATE" />
+    <!--多對多關係-->
+    <bag name="Roles" generic="true" table="r_group_role">
+      <key column="group_id" foreign-key="group_id"/>
+      <many-to-many column="role_id" class="Role" foreign-key="role_id"/>
+    </bag>
+    <!--多對多關係-->
+    <bag name="Users" generic="true" table="r_user_group">
+      <key column="group_id" foreign-key="group_id"/>
+      <many-to-many column="user_id" class="User" foreign-key="user_id"/>
+    </bag>
+  </class>
+</hibernate-mapping>

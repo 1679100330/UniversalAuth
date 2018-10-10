@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+namespace="UniversalAuth.Models" assembly="UniversalAuth">
+  <class name="Menu" table="SYS_Menu">
+    <id name="Id"/>
+    <version name="Version" column="Version" type="integer" unsaved-value="0" />
+    <property name="Pid" />
+    <property name="Name" />
+    <property name="ControllerName" column="Controller" />
+    <property name="ActionName" column="Action" />
+    <property name="Status" />
+    <property name="CreateDate" column="CREATE_DATE" />
+    <!--一對多關係-->
+    <set name="Prems" generic="true" inverse="true">
+      <key column="Menu" foreign-key="Menu"/>
+      <one-to-many class="Prem"/>
+    </set>
+    <!--多對多關係-->
+    <bag name="Roles" generic="true" table="r_role_menu">
+      <key column="menu_id" foreign-key="menu_id"/>
+      <many-to-many column="role_id" class="Role" foreign-key="role_id"/>
+    </bag>
+    <!--多對多關係-->
+    <bag name="Users" generic="true" table="r_user_menu">
+      <key column="menu_id" foreign-key="menu_id"/>
+      <many-to-many column="user_id" class="User" foreign-key="user_id"/>
+    </bag>
+  </class>
+</hibernate-mapping>

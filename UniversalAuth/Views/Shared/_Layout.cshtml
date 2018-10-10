@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>@ViewBag.Title</title>    
+    @Styles.Render("~/Res/css")
+    @Scripts.Render("~/Res/js")     
+</head>
+<body>
+    <div id="header">
+        <ul class="layui-nav layui-bg-blue">
+            <li class="layui-nav-item layui-nav-item-logo">
+                <a href="/"><img src="~/Res/Img/logo.png" alt="logo" width="94" height="23"></a>                                
+            </li>                        
+            <li class="layui-nav-item layui-nav-item-right">
+                @if (@Session["user"] != null)
+                {
+                    UniversalAuth.Models.User user = (UniversalAuth.Models.User)@Session["user"];
+                    <a href="javascript:;"><img src="~/Res/Img/avatar.jpg" class="layui-nav-img" />
+                        @user.Name
+                    </a>
+                }                                
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">我的資料</a></dd>
+                    <dd><a href="javascript:;">個人設定</a></dd>
+                    <dd><a href="javascript:;">修改密碼</a></dd>
+                    <dd><hr /></dd>
+                    <dd>@Html.ActionLink("登出", "Logout", "Home")</dd>
+                </dl>
+            </li>            
+        </ul>
+    </div>
+    <div id="main">
+        <div class="left">
+            <div class="left-scorll">
+                <ul class="layui-nav layui-nav-tree layui-bg-blue" lay-filter="test">                                        
+                    @*
+                        加載菜單
+                    *@
+                    @if (@Session["user"] != null)
+                    {
+                        for (int i = 0; i < ((UniversalAuth.Models.User)@Session["user"]).Menus.Count; i++)
+                        {
+                            UniversalAuth.Models.Menu menu = ((UniversalAuth.Models.User)@Session["user"]).Menus[@i];
+                            if (menu.Pid == "#")
+                            {
+                                <li class="layui-nav-item">
+                                    @Html.ActionLink(menu.Name, menu.ActionName, menu.ControllerName, null, new { href = "javascript:;" })
+                                    <dl class="layui-nav-child">
+                                        @for (int j = 0; j < ((UniversalAuth.Models.User)@Session["user"]).Menus.Count; j++)
+                                        {
+                                            UniversalAuth.Models.Menu childMenu = ((UniversalAuth.Models.User)@Session["user"]).Menus[@j];                                            
+                                            if(childMenu.Pid==menu.Id){
+                                                <dd>@Html.ActionLink(childMenu.Name, childMenu.ActionName, childMenu.ControllerName)</dd>
+                                            }
+                                        }
+                                    </dl>
+                                </li>
+                            }                            
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+            <div class="right-scorll">
+                <div class="content">
+                    @RenderBody()                    
+                </div>                
+            </div>
+        </div>
+    </div>    
+    <div id="footer">        
+        底部
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

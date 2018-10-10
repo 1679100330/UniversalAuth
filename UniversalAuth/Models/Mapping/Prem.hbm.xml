@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+namespace="UniversalAuth.Models" assembly="UniversalAuth">
+  <class name="Prem" table="SYS_Prem">
+    <id name="Id"/>
+    <version name="Version" column="Version" type="integer" unsaved-value="0" />
+    <property name="Url" />
+    <property name="CreateDate" column="CREATE_DATE" />
+    <many-to-one name="Menu" class="Menu" foreign-key="Menu"/>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Prem";
+}
+<style type="text/css">
+    #gw-tree .layui-form-checkbox{
+        padding-left:5px;        
+    }
+    #gw-tree .layui-form-checkbox i{
+        width:1px;
+        overflow:hidden;
+        background:#5FB878;
+    }    
+</style>
+<div class="layui-row">
+    <div class="layui-col-md6" style="padding:10px">
+        <div class="layui-card" style="margin-top:20px;">
+            <div class="layui-card-header" style="background:#3598DC;color:white">權限列表</div>
+            <div class="layui-card-body" style="border-left:1px solid #E6E6E6;border-bottom:1px solid #E6E6E6;border-right:1px solid #E6E6E6;">
+                <form class="layui-form" action="" lay-filter="example">
+                    <div id="gw-tree"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md6" style="padding:10px">
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">編輯</li>
+                <li>權限</li>
+            </ul>
+            <div class="layui-tab-content" style="border-left:1px solid #E6E6E6;border-bottom:1px solid #E6E6E6;border-right:1px solid #E6E6E6;">
+                <div class="layui-tab-item layui-show">
+                    <form class="layui-form" action="" lay-filter="formPrem" id="formPrem">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">ID</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="id" class="layui-input" disabled>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">菜单</label>
+                            <div class="layui-input-block">
+                                <select name="pid" lay-filter="pid">
+                                    <option value="#" selected>root</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" lay-verify="required" class="layui-input">
+                            </div>
+                        </div>                        
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit="" lay-filter="savePrem">保存</button>
+                                <button class="layui-btn" lay-submit="" lay-filter="deletePrem">删除</button>
+                                <button id="reset" type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-tab-item">
+                    <form class="layui-form" action="" lay-filter="formPremItem" id="formPremItem">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">URL</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="url" lay-verify="required" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit="" lay-filter="savePremItem">添加</button>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="layui-table" id="tb_prem" lay-even lay-skin="nob" style="margin:0px;">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>URL</th>
+                                <th>創建日期</th>
+                                <th>删除</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Res/Js/System/Prem.js?t=20181006ABCDEFGH"></script>
+
